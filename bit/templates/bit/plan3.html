@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+{% load static %}
+{%  block content %}
+<html lang="en">
+
+<!--   Tue, 07 Jan 2020 03:33:27 GMT -->
+<head>
+<meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+<title>WellsFx</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}">
+<!-- General CSS Files -->
+    <link href="{% static 'modules/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/donate.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap1.css' %}">
+
+</head>
+<body class="layout-4">
+<!-- Page Loader -->
+    <div id="preloader">
+        <div id="preloader-content">
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="150px" height="150px" viewBox="100 100 400 400" xml:space="preserve">
+                <filter id="dropshadow" height="130%">
+                <feGaussianBlur in="SourceAlpha" stdDeviation="5"/>
+                <feOffset dx="0" dy="0" result="offsetblur"/>
+                <feFlood flood-color="red"/>
+                <feComposite in2="offsetblur" operator="in"/>
+                <feMerge>
+                <feMergeNode/>
+                <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+                </filter>
+                <path class="path" fill="#000000" d="M446.089,261.45c6.135-41.001-25.084-63.033-67.769-77.735l13.844-55.532l-33.801-8.424l-13.48,54.068
+                    c-8.896-2.217-18.015-4.304-27.091-6.371l13.568-54.429l-33.776-8.424l-13.861,55.521c-7.354-1.676-14.575-3.328-21.587-5.073
+                    l0.034-0.171l-46.617-11.64l-8.993,36.102c0,0,25.08,5.746,24.549,6.105c13.689,3.42,16.159,12.478,15.75,19.658L208.93,357.23
+                    c-1.675,4.158-5.925,10.401-15.494,8.031c0.338,0.485-24.579-6.134-24.579-6.134l-9.631,40.468l36.843,9.188
+                    c8.178,2.051,16.209,4.19,24.098,6.217l-13.978,56.17l33.764,8.424l13.852-55.571c9.235,2.499,18.186,4.813,26.948,6.995
+                    l-13.802,55.309l33.801,8.424l13.994-56.061c57.648,10.902,100.998,6.502,119.237-45.627c14.705-41.979-0.731-66.193-31.06-81.984
+                    C425.008,305.984,441.655,291.455,446.089,261.45z M368.859,369.754c-10.455,41.983-81.128,19.285-104.052,13.589l18.562-74.404
+                    C306.28,314.65,379.774,325.975,368.859,369.754z M379.302,260.846c-9.527,38.187-68.358,18.781-87.442,14.023l16.828-67.489
+                    C327.767,212.14,389.234,221.02,379.302,260.846z"/>
+            </svg>
+        </div>
+    </div>
+
+<div id="app">
+    <div class="main-wrapper main-wrapper-1">
+        <div class="navbar-bg"></div>
+
+        <!-- Start app top navbar -->
+        <nav class="navbar navbar-expand-lg main-navbar">
+            <form class="form-inline mr-auto">
+                <ul class="navbar-nav mr-3">
+                    <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
+                </ul>
+
+            </form>
+            <ul class="navbar-nav navbar-right">
+                <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep"><i class="far fa-bell"></i></a>
+                    <div class="dropdown-menu dropdown-list dropdown-menu-right">
+                    <div class="dropdown-header">Notifications
+                        <div class="float-right">
+                            <a href="#">Mark All As Read</a>
+                        </div>
+                    </div>
+                    <div class="dropdown-list-content dropdown-list-icons">
+                        <a href="#" class="dropdown-item">
+                            <div class="dropdown-item-icon bg-info text-white">
+                                <i class="fas fa-bell"></i>
+                            </div>
+                            <div class="dropdown-item-desc">
+                                Welcome to wells fx!
+                                <div class="time">Just Now</div>
+                            </div>
+                        </a>
+                    </div>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                    <img alt="image" src="{{request.user.customer.profile_pic.url}}" class="rounded-circle mr-1">
+                    <div class="d-sm-none d-lg-inline-block">Hello, {{request.user}}</div></a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <div class="dropdown-title">Welcome</div>
+                        <a href="{% url 'profile' %}" class="dropdown-item has-icon"><i class="far fa-user"></i> Profile</a>
+                        <a href="{% url 'deposit' %}" class="dropdown-item has-icon"><i class="fas fa-bolt"></i> Deposit</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="{% url 'logout' %}" class="dropdown-item has-icon text-danger"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Start main left sidebar menu -->
+        <div class="main-sidebar sidebar-style-3">
+            <aside id="sidebar-wrapper">
+                <div class="sidebar-brand">
+                    <a href="{% url 'index' %}">WELLS FX</a>
+                </div>
+                <div class="sidebar-brand sidebar-brand-sm">
+                    <a href="{% url 'index' %}">WF</a>
+                </div>
+                <ul class="sidebar-menu">
+                    <li class="menu-header" >Dashboard</li>
+                    <li class="dropdown active">
+                        <a href="{% url 'home' %}" ><i class="fas fa-fire"></i><span>Dashboard</span></a>
+                    </li>
+                    <li class="menu-header">Starter</li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Deposit/Widthraw</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a class="nav-link" href="{% url 'deposit' %}">Deposit</a></li>
+
+                            <li><a class="nav-link" href="{% url 'withdraw' %}">Withdraw</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-map-marker-alt"></i> <span>Crypto Exchange</span></a>
+                        <ul class="dropdown-menu">
+                             <li><a class="nav-link" href="{% url 'crypto_exchange' %}">Crypto Exchange</a></li>
+                             <li><a class="nav-link" href="{% url 'profit' %}">Profits</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Transaction</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{% url 'transaction' %}">Transaction</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-plug"></i> <span>Referral</span></a>
+                        <ul class="dropdown-menu">
+                            <li class="menu-sub-header">Referral</li>
+                            <li><a class="nav-link" href="{% url 'refer' %}">Refer User</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-header">Logins:</li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-exclamation"></i> <span>Logout</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+                            <li><a class="nav-link" href="{% url 'forgotten_password' %}">Forgotten Password</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </aside>
+        </div>
+
+        <!-- Start app main Content -->
+        <div class="main-content">
+                <div class="calculate">
+                    <div class="calculate__header">
+                      <input type="text" disabled="" placeholder="$30,000" />
+                      <datalist id="rates">
+                        <option value="TH/s" selected></option>
+                      </datalist>
+            
+                      <a href="#continue"><button class="btn btn--accent">Proceed</button></a>
+                    </div>
+                </div>
+
+         <h2 class="text--primary" id="continue" style="text-align: center; color:#ffae11;">Click To Select Preferred Payment Method.</h2>
+
+          <input id="panel-1-ctrl"
+                 class="panel-radios" type="radio" name="tab-radios" checked>
+          <input id="panel-2-ctrl"
+                 class="panel-radios" type="radio" name="tab-radios">
+          
+          
+          
+          
+          <!-- TABS LIST -->
+          <ul id="tabs-list">
+              <!-- MENU TOGGLE -->
+              <label id="open-nav-label" for="nav-ctrl"></label>
+              <li id="li-for-panel-1">
+                <label class="panel-label"
+                       for="panel-1-ctrl">Cryptocurrency</label>
+              </li><!--INLINE-BLOCK FIX
+           --><li id="li-for-panel-2">
+                <label class="panel-label"
+                       for="panel-2-ctrl">Bank Transfer</label>
+          
+              <label id="close-nav-label" for="nav-ctrl">Close</label>
+          </ul>
+          
+          <!-- THE PANELS -->
+          <article id="panels">
+            <div class="container">
+              <section id="panel-1">
+                <main>
+                  <div class="tabs">
+                    <input type="radio" name="tabs" id="tabone" checked="checked">
+                    <label class="tablabel" for="tabone">
+                      <svg class="icon icon--ban" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="40" cy="40" fill="#212124" opacity=".5" r="40" />
+                        <path d="m38.36 13.94-1.8 7.2-2.81-.66-6-1.51-1.17 4.69s3.26.75 3.19.79a2.33 2.33 0 0 1 2 2.55l-2 8.22a3.36 3.36 0 0 1 .45.15l-.46-.12-2.91 11.49a1.6 1.6 0 0 1 -2 1c0 .06-3.2-.8-3.2-.8l-2.18 5 5.71 1.42 3.13.81-1.82 7.29 4.39 1.1 1.8-7.22 3.49.91-1.8 7.25 4.39 1.09 1.82-7.28c7.48 1.42 13.11.85 15.48-5.92 1.94-5.45-.06-8.59-4.06-10.64 2.87-.67 5-2.55 5.61-6.45.79-5.32-3.26-8.18-8.8-10.09l1.8-7.2-4.4-1.1-1.75 7-3.46-.8 1.72-7.11-4.38-1zm-1.85 26.53c3 .74 12.51 2.21 11.1 7.89-1.36 5.45-10.54 2.51-13.5 1.77zm3.29-13.19c2.48.62 10.46 1.77 9.17 6.94-1.24 5-8.88 2.44-11.36 1.82z" fill-rule="evenodd" />
+                      </svg>
+                      BTC
+                    </label>
+                    <div class="tab">
+                      <div class="tab-center">
+                        <!-- Tab 1 Content -->
+                        <div class="media-object">
+                          <div class="media">
+                  
+                            <div class="img">
+                              <img alt="Banano Address" style="-webkit-user-select: none;margin: auto;background-color: hsl(0, 0%, 90%);transition: background-color 300ms;" src="data:image/png;base64,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">
+                            </div>
+                            <h2 class="title" style="color: orange;">Bitcoin Address</h2>
+                            <div class="content">
+                  
+                              <div class="clipboard">
+                                <div id="copyAddress" class="donate-widget">
+                                  <input class="address" id="address" value="ban_3eyeztp45kbr58sgto8htuhq3wmygtzegz8mnuay9un5eg9mdnfb73gwmdkh" readonly>
+                                  <div class="copy">
+                                    <i class="fa fa-clipboard" aria-hidden="true" data-copytarget="#address"></i>
+                                  </div>
+                                </div>
+                              </div>
+                              <button class="button fit copy" href="#address" tabindex="0" role="button" aria-pressed="false" data-copytarget="#address">Copy Address</button>
+                  
+                            </div>
+                          </div>
+                        </div>
+                      </div><!-- End Tab 1 Content -->
+                  
+                    </div>
+                  
+                    <input type="radio" name="tabs" id="tabthree">
+                    <label class="tablabel" for="tabthree">
+                      <svg class="icon icon--eth" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
+                        <circle cx="39.88" cy="40" fill="#212124" opacity=".5" r="40" />
+                        <g fill-rule="evenodd">
+                          <path d="m54.75 43.23-14.77 8.72-14.76-8.72 14.76 20.8z" />
+                          <path d="m39.98 15.94-14.76 24.49 14.76 8.72 14.76-8.72z" />
+                        </g>
+                      </svg>ETH
+                    </label>
+                    <div class="tab">
+                      <div class="tab-center">
+                        <div class="media-object2">
+                          <div class="media">
+                  
+                            <div class="img">
+                              <img alt="Bitcoin Address" style="-webkit-user-select: none;margin: auto;background-color: hsl(0, 0%, 90%);transition: background-color 300ms;" src="data:image/png;base64,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">
+                            </div>
+                            <h2 class="title">Ethurem Address</h2>
+                            <div class="content">
+                  
+                              <div class="clipboard">
+                                <div id="copyAddress" class="donate-widget">
+                                  <input class="address" id="address" value="ban_3eyeztp45kbr58sgto8htuhq3wmygtzegz8mnuay9un5eg9mdnfb73gwmdkh" readonly>
+                                  <div class="copy">
+                                    <i class="fa fa-clipboard" aria-hidden="true" data-copytarget="#address"></i>
+                                  </div>
+                                </div>
+                              </div>
+                              <button class="button fit copy" href="#address" tabindex="0" role="button" aria-pressed="false" data-copytarget="#address">Copy Address</button>
+                  
+                            </div>
+                          </div>
+                        </div>    </div>
+                  
+                    </div>
+                  
+                    <input type="radio" name="tabs" id="tabfour">
+                    <label class="tablabel" for="tabfour">
+                      <svg id="nano" class="icon icon--nano" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
+                        <circle cx="39.88" cy="40" fill="#212124" opacity=".5" r="40" />
+                        <g>
+                          <path d="m43.55 40a3.67 3.67 0 0 1 -7.34 0c0-2.75-.92-3.67-3.67-3.67s-3.67.92-3.67 3.67a3.67 3.67 0 1 1 -3.67-3.67c2.75 0 3.67-.92 3.67-3.66a3.67 3.67 0 1 1 7.33 0c0 2.75.92 3.66 3.67 3.66a3.68 3.68 0 0 1 3.68 3.67z" />
+                          <circle cx="17.86" cy="47.34" r="3.67" />
+                          <path d="m65.56 32.66a3.67 3.67 0 0 1 -3.67 3.67c-2.75 0-3.66.92-3.66 3.67a3.67 3.67 0 0 1 -3.67 3.66c-2.75 0-3.67.92-3.67 3.67a3.67 3.67 0 1 1 -3.67-3.67c2.76 0 3.67-.91 3.67-3.66a3.67 3.67 0 0 1 3.67-3.67c2.75 0 3.67-.92 3.67-3.67a3.67 3.67 0 1 1 7.33 0z" />
+                        </g>
+                      </svg>LTH
+                    </label>
+                    <div class="tab">
+                      <div class="tab-center">
+                        <div class="media-object3">
+                          <div class="media">
+                  
+                            <div class="img">
+                              <img alt="Bitcoin Address" style="-webkit-user-select: none;margin: auto;background-color: hsl(0, 0%, 90%);transition: background-color 300ms;" src="data:image/png;base64,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">
+                            </div>
+                            <h2 class="title">Litecoin Address</h2>
+                            <div class="content">
+                  
+                              <div class="clipboard">
+                                <div id="copyAddress" class="donate-widget">
+                                  <input class="address" id="address" value="ban_3eyeztp45kbr58sgto8htuhq3wmygtzegz8mnuay9un5eg9mdnfb73gwmdkh" readonly>
+                                  <div class="copy">
+                                    <i class="fa fa-clipboard" aria-hidden="true" data-copytarget="#address"></i>
+                                  </div>
+                                </div>
+                              </div>
+                              <button class="button fit copy" href="#address" tabindex="0" role="button" aria-pressed="false" data-copytarget="#address">Copy Address</button>
+                  
+                            </div>
+                          </div>
+                        </div>     </div>
+                  
+                    </div>
+                  
+                  </div>
+           </main>
+              </section>
+              <section id="panel-2">
+                <main>
+                                            <div class="user-content">
+                            <div class="user-panel">
+                                <div class="gaps-3x"></div>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Account Name</th>
+                                                <th>Account Number</th>
+                                                <th>Bank</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td> Ajayi Ohiremen Emmanuel</td>
+                                                <td>2164104668</td>
+                                                <td>UBA</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                            </div><!-- .user-panel -->
+            </div>
+                </main>
+              </section>
+          
+            </div>
+          </article>
+          <!-- partial -->
+          <br>
+          <br>
+          <form id="file-upload-form" class="uploader">
+            <input id="file-upload" type="file" name="fileUpload" accept="image/*" />
+          
+            <label for="file-upload" id="file-drag">
+              <img id="file-image" src="#" alt="Preview" class="hidden">
+              <div id="start">
+                <i class="fa fa-download" aria-hidden="true"></i>
+                <div>Select a file or drag here</div>
+                <div id="notimage" class="hidden">Please select an image</div>
+                <span id="file-upload-btn" class="btn btn-primary">Select a file</span>
+              </div>
+              <div id="response" class="hidden">
+                <div id="messages"></div>
+                <progress class="progress" id="file-progress" value="0">
+                  <span>0</span>%
+                </progress>
+              </div>
+            </label>
+          </form>
+          <a href="{% url 'status' %}"><button class="btn btn--accent">Proceed</button></a>
+          
+        </div>
+</div>
+</div>
+<div id="google_translate_element"></div>
+ 
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                {pageLanguage: 'en'},
+                'google_translate_element'
+            );
+        }
+    </script>
+ 
+    <script type="text/javascript"
+            src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+    </script>
+
+<script>
+    new Rellax(".btc-illustration", {
+      horizontal: true,
+    });
+    new Rellax("#gpu-illustration", {
+      horizontal: true,
+    });
+  </script>
+
+<script src="{% static 'bundles/lib.vendor.bundle.js' %}"></script>
+<script src="{% static 'js/CodiePie.js' %}"></script>
+
+<!-- Page Specific JS File -->
+<script src="{% static 'js/page/index.js' %}"></script>
+
+<!-- Template JS File -->
+<script src="{% static 'js/scripts.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+<script src="{% static 'js/custom1.js' %}"></script>
+<script src="{% static 'js/donate.js' %}"></script>
+
+
+</body>
+{%  endblock content %}
+<!--   Tue, 07 Jan 2020 03:35:12 GMT -->
+</html>
